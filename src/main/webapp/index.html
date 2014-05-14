@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script type="text/javascript">
+     window.WebSocket = window.WebSocket || window.MozWebSocket;  
+        
+     if (!window.WebSocket){  
+         alert("WebSocket not supported by this browser");  
+     };  
+        
+    var websocket = new WebSocket("ws://127.0.0.1:9001/websocket");  
+     websocket.onmessage = function(evt){  
+         var data = evt.data;  
+          alert("received message: " + data);  
+     }  
+      
+     function send() {  
+     var name = document.getElementById('demoname').value;  
+        alert("websocket send message:"+name);  
+        websocket.send(name);  
+     }  
+    </script>
+</head>
+<body>
+	<label for="name">你叫什么名字:</label>
+	<input id="demoname" type="text" id="name" name="name" />
+	<button onclick="send()">Send</button>
+	<div id="message" style="color: red"></div>
+</body>
+</html>
